@@ -39,6 +39,8 @@ const Home = () => {
               impedit delectus provident quo eveniet.
             </Text>
             <Button
+              colorScheme="blue"
+              mr={3}
               marginTop={10}
               onClick={() => {
                 navigate("all");

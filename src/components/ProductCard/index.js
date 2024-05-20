@@ -49,6 +49,8 @@ const ProductCard = ({ product }) => {
         <Text>{product?.description}</Text>
         <Flex justifyContent={"space-between"} alignItems={"flex-end"}>
           <Button
+            colorScheme="blue"
+            mr={3}
             onClick={() => {
               handleOnAddToCart();
             }}

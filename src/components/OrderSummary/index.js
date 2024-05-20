@@ -66,7 +66,9 @@ const OrderSummary = () => {
           </Text>
           <Text>INR 0</Text>
         </Stack>
-        <Button onClick={checkoutFn}>Checkout</Button>
+        <Button onClick={checkoutFn} colorScheme="blue" mr={3}>
+          Checkout
+        </Button>
       </Stack>
     )
   );

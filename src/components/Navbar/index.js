@@ -3,9 +3,13 @@ import { Box, Stack, Text, OrderedList, chakra, Flex } from "@chakra-ui/react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "phosphor-react";
 import { useShoppingCart } from "../../context/cart-provider";
+import { SearchIcon } from "@chakra-ui/icons";
+import { useDisclosure } from "@chakra-ui/react";
+import SearchModal from "./SearchModal";
 
 const Navbar = () => {
   const { cartCount } = useShoppingCart();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   return (
     <Stack
@@ -85,13 +89,15 @@ const Navbar = () => {
           </Text>
         </Flex>
       </Stack>
-      <div className="nav-secondary_btn" onClick={() => {}}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div className="nav-secondary"></div>
-      <div className="nav-overlay"></div>
+
+      <SearchIcon
+        color={"black"}
+        boxSize={6}
+        onClick={() => {
+          onOpen();
+        }}
+      />
+      <SearchModal isOpen={isOpen} onClose={onClose} />
     </Stack>
   );
 };

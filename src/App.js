@@ -6,6 +6,7 @@ import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
 import { CartProvider } from "./context/cart-provider";
 import Checkout from "./pages/Checkout";
+import { MyProductProvider } from "./context/product-provide";
 
 function App() {
   return (
