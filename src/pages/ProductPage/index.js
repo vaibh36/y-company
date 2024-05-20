@@ -1,9 +1,7 @@
 import React from "react";
 import ProductCard from "../../components/ProductCard";
-import getServiceResponse from "../../utils/getServiceResponse";
+
 import {
-  Grid,
-  GridItem,
   Box,
   Container,
   useBreakpointValue,
@@ -12,27 +10,12 @@ import {
 import Navbar from "../../components/Navbar";
 import MobileNavbar from "../../components/MobileNavbar";
 import "../../firebaseConfig";
-import { getFirestore, addDoc, collection, getDocs } from "firebase/firestore";
+import { MyContext } from "../../context/product-provide";
 
 const ProductPage = () => {
   const isMobileView = useBreakpointValue({ base: true, md: false, lg: false });
-  const [apiData, setApiData] = React.useState([]);
-  const db = getFirestore();
 
-  React.useEffect(() => {
-    const fetchDataFromFirestore = async () => {
-      const querySnapshot = await getDocs(collection(db, "clothes"));
-      const temporaryArr = [];
-      querySnapshot.forEach((doc) => {
-        temporaryArr.push(doc.data());
-      });
-      setApiData(temporaryArr);
-    };
-
-    fetchDataFromFirestore();
-  }, []);
-
-  console.log("storedValues are:-", apiData);
+  const { products } = React.useContext(MyContext);
 
   return (
     <Box
@@ -46,7 +29,7 @@ const ProductPage = () => {
 
         <Box marginTop={0} id="new__box" width={"full"}>
           <SimpleGrid columns={{ sm: 1, md: 2 }} width={"100%"} gap={3}>
-            {apiData?.map((item, index) => {
+            {products?.map((item, index) => {
               return <ProductCard product={item} key={index} />;
             })}
           </SimpleGrid>
