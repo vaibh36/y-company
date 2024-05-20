@@ -13,15 +13,50 @@ import {
   Input,
   Stack,
   Text,
+  useBreakpointValue,
 } from "@chakra-ui/react";
-import { MyProductProvider } from "../../context/product-provide";
+import { MyContext } from "../../context/product-provide";
+import { useNavigate } from "react-router-dom";
 
 const SearchModal = ({ isOpen, onClose }) => {
+  const isMobileView = useBreakpointValue({
+    base: true,
+    md: false,
+    lg: false,
+  });
+  const navigate = useNavigate();
   const [category, setCategory] = React.useState("");
-  const [filteredProducts, setFilteredProducts] = React.useState([]);
+  const [cost, setCost] = React.useState("");
+  const { products, setSearchProducts } = React.useContext(MyContext);
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+  const handleCostChange = (e) => {
+    setCost(e.target.value);
+  };
+
+  const filterProducts = () => {
+    let filtered = [...products];
+    if (category) {
+      filtered = filtered?.filter((product) => product.category === category);
+    }
+    if (cost) {
+      filtered = filtered?.filter((product) => {
+        if (cost === "low") return product.price < 300;
+        if (cost === "medium")
+          return product.price > 300 && product.price <= 700;
+        if (cost === "high") return product.price > 700;
+        return true;
+      });
+    }
+    onClose();
+    setSearchProducts(filtered);
+    navigate("/searched-products");
+  };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size={"lg"}>
+    <Modal isOpen={isOpen} onClose={onClose} size={isMobileView ? "xs" : "lg"}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Search</ModalHeader>
@@ -31,21 +66,27 @@ const SearchModal = ({ isOpen, onClose }) => {
           <Stack flexDirection={"column"} gap={16}>
             <Stack flexDirection={"column"}>
               <Text fontWeight={700}>Category: </Text>
-              <Select placeholder="Select Category">
-                <option value="">All</option>
-                <option value="men's clothing">Men's Clothing</option>
-                <option value="women's clothing">Women's Clothing</option>
-                <option value="jewelery">Jewelery</option>
-                <option value="electronics">Electronics</option>
+              <Select
+                placeholder="Select Category"
+                value={category}
+                onChange={handleCategoryChange}
+              >
+                <option value="mens clothing">Men's Clothing</option>
+                <option value="womens clothing">Women's Clothing</option>
+                <option value="Jewelery">Jewelery</option>
+                <option value="Electronics">Electronics</option>
               </Select>
             </Stack>
             <Stack>
               <Text fontWeight={700}>Cost: </Text>
-              <Select id="cost">
-                <option value="">All</option>
-                <option value="low">Low (Below $50)</option>
-                <option value="medium">Medium ($50 - $200)</option>
-                <option value="high">High (Above $200)</option>
+              <Select
+                placeholder="Select Cost"
+                value={cost}
+                onChange={handleCostChange}
+              >
+                <option value="low">Low(Below INR 300)</option>
+                <option value="medium">Medium(INR 301 - INR 700)</option>
+                <option value="high">High(Above INR 701)</option>
               </Select>
             </Stack>
             <div>
@@ -59,7 +100,7 @@ const SearchModal = ({ isOpen, onClose }) => {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="blue" mr={3}>
+          <Button colorScheme="blue" mr={3} onClick={filterProducts}>
             Search
           </Button>
           <Button

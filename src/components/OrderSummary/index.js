@@ -1,4 +1,4 @@
-import { Stack, Text, Button } from "@chakra-ui/react";
+import { Stack, Text, Button, useBreakpointValue } from "@chakra-ui/react";
 import React from "react";
 import { useShoppingCart } from "../../context/cart-provider";
 import axios from "axios";
@@ -8,6 +8,11 @@ const OrderSummary = () => {
   const { cartDetails } = useShoppingCart();
   const cartItems = Object.values(cartDetails);
   console.log("cartDetails are:-", cartDetails);
+  const isMobileView = useBreakpointValue({
+    base: true,
+    md: false,
+    lg: false,
+  });
 
   const checkoutFn = async () => {
     const items = Object.keys(cartDetails)?.map((val) => {
@@ -66,9 +71,16 @@ const OrderSummary = () => {
           </Text>
           <Text>INR 0</Text>
         </Stack>
-        <Button onClick={checkoutFn} colorScheme="blue" mr={3}>
-          Checkout
-        </Button>
+        <Stack alignItems={{ base: "center", md: "end" }}>
+          <Button
+            paddingLeft={{ base: "2" }}
+            paddingRight={{ base: "2" }}
+            onClick={checkoutFn}
+            colorScheme="blue"
+          >
+            Checkout
+          </Button>
+        </Stack>
       </Stack>
     )
   );

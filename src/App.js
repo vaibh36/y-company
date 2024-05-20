@@ -7,6 +7,7 @@ import ProductDetail from "./pages/ProductDetail";
 import { CartProvider } from "./context/cart-provider";
 import Checkout from "./pages/Checkout";
 import { MyProductProvider } from "./context/product-provide";
+import FilteredProducts from "./pages/FilterProducts";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/all" element={<ProductPage />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/searched-products" element={<FilteredProducts />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

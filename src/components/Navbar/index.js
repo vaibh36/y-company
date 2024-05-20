@@ -92,6 +92,7 @@ const Navbar = () => {
 
       <SearchIcon
         color={"black"}
+        cursor={"pointer"}
         boxSize={6}
         onClick={() => {
           onOpen();

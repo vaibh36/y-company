@@ -1,12 +1,18 @@
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import React from "react";
 import { Text, Box, Flex, useDisclosure } from "@chakra-ui/react";
 import { ShoppingCart } from "phosphor-react";
 import { useShoppingCart } from "../../context/cart-provider";
 import { useNavigate } from "react-router-dom";
+import SearchModal from "../Navbar/SearchModal";
 
 const MobileNavbar = () => {
   const { cartCount } = useShoppingCart();
+  const {
+    isOpen: isSearchModalOpen,
+    onOpen: onSearchModalOpen,
+    onClose: onSearchModalClose,
+  } = useDisclosure();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   return (
@@ -58,25 +64,36 @@ const MobileNavbar = () => {
           <Flex flex={2}>
             <Text color="white">Y Company</Text>
           </Flex>
-          <Flex>
-            <ShoppingCart
-              color="white"
-              size={22}
+          <Flex flexDirection={"row"} gap={4} alignItems={"center"}>
+            <Flex>
+              <ShoppingCart
+                color="white"
+                size={22}
+                onClick={() => {
+                  navigate("/checkout");
+                }}
+              />
+              <Text
+                color="white"
+                fontSize="sm"
+                position={"absolute"}
+                marginLeft={5}
+              >
+                {cartCount}
+              </Text>
+            </Flex>
+            <SearchIcon
+              color={"white"}
+              cursor={"pointer"}
+              boxSize={4}
               onClick={() => {
-                navigate("/checkout");
+                onSearchModalOpen();
               }}
             />
-            <Text
-              color="white"
-              fontSize="sm"
-              position={"absolute"}
-              marginLeft={5}
-            >
-              {cartCount}
-            </Text>
           </Flex>
         </Flex>
       </Box>
+      <SearchModal isOpen={isSearchModalOpen} onClose={onSearchModalClose} />
     </Box>
   );
 };

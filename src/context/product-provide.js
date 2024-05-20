@@ -8,6 +8,7 @@ export const MyContext = createContext();
 // Create the provider component
 export const MyProductProvider = ({ children }) => {
   const [products, setProducts] = useState();
+  const [searchedProducts, setSearchProducts] = React.useState([]);
   const db = getFirestore();
 
   React.useEffect(() => {
@@ -24,7 +25,9 @@ export const MyProductProvider = ({ children }) => {
   }, []);
 
   return (
-    <MyContext.Provider value={{ products, setProducts }}>
+    <MyContext.Provider
+      value={{ products, setProducts, searchedProducts, setSearchProducts }}
+    >
       {children}
     </MyContext.Provider>
   );
