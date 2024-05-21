@@ -27,7 +27,10 @@ const Category = () => {
       let filtered = [...products];
 
       filtered = filtered?.filter((product) => {
-        return product?.category?.substring(0, 4) === id?.substring(0, 4);
+        return (
+          product?.category?.substring(0, 4)?.toLowerCase() ===
+          id?.substring(0, 4)?.toLowerCase()
+        );
       });
 
       setCategoryItems([...filtered]);
@@ -36,7 +39,7 @@ const Category = () => {
 
   return (
     <Box
-      id="product__page"
+      id="category__page"
       sx={{
         background: "#eee",
       }}

@@ -59,6 +59,59 @@ const MobileNavbar = () => {
                   isOpen ? onClose() : onOpen();
                 }}
               />
+              <Flex
+                sx={{
+                  marginTop: 8,
+                }}
+                gap={"2px"}
+                flexDirection={"column"}
+              >
+                <Text
+                  color="white"
+                  onClick={() => {
+                    navigate("/");
+                    onClose();
+                  }}
+                >
+                  Home
+                </Text>
+                <Text
+                  color="white"
+                  onClick={() => {
+                    navigate("/category/mens-clothing");
+                    onClose();
+                  }}
+                >
+                  Men
+                </Text>
+                <Text
+                  color="white"
+                  onClick={() => {
+                    navigate("/category/womens-clothing");
+                    onClose();
+                  }}
+                >
+                  Women
+                </Text>
+                <Text
+                  color="white"
+                  onClick={() => {
+                    navigate("/category/jewelery");
+                    onClose();
+                  }}
+                >
+                  Jewelery
+                </Text>
+                <Text
+                  color="white"
+                  onClick={() => {
+                    navigate("/category/electronics");
+                    onClose();
+                  }}
+                >
+                  Electronics
+                </Text>
+              </Flex>
             </Box>
           )}
           <Flex flex={2}>
