@@ -14,7 +14,7 @@ const ProductDetail = () => {
     }
     getData();
   }, [id]);
-  console.log("productData is:-", productData);
+
   return <ProductView productData={productData} />;
 };
 

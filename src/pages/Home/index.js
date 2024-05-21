@@ -15,6 +15,7 @@ import MobileNavbar from "../../components/MobileNavbar";
 
 const Home = () => {
   const navigate = useNavigate();
+
   const isMobileView = useBreakpointValue({ base: true, md: false, lg: false });
   return (
     <Box

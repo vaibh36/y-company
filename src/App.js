@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
@@ -8,6 +9,7 @@ import { CartProvider } from "./context/cart-provider";
 import Checkout from "./pages/Checkout";
 import { MyProductProvider } from "./context/product-provide";
 import FilteredProducts from "./pages/FilterProducts";
+import Category from "./pages/Category";
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/searched-products" element={<FilteredProducts />} />
+            <Route path="/category/:id" element={<Category />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

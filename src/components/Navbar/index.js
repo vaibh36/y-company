@@ -45,7 +45,7 @@ const Navbar = () => {
             fontWeight: "600",
           }}
         >
-          <NavLink to="/">Home</NavLink>
+          <Link to="/">Home</Link>
         </OrderedList>
         <OrderedList
           sx={{
@@ -53,7 +53,7 @@ const Navbar = () => {
             fontWeight: "600",
           }}
         >
-          <NavLink to="/explore/men">Men</NavLink>
+          <Link to="/category/mens-clothing">Men</Link>
         </OrderedList>
         <OrderedList
           sx={{
@@ -61,7 +61,7 @@ const Navbar = () => {
             fontWeight: "600",
           }}
         >
-          <NavLink to="/explore/women">Women</NavLink>
+          <Link to="/category/womens-clothing">Women</Link>
         </OrderedList>
         <OrderedList
           sx={{
@@ -69,7 +69,7 @@ const Navbar = () => {
             fontWeight: "600",
           }}
         >
-          <NavLink to="/all">Explore All</NavLink>
+          <Link to="/all">Explore All</Link>
         </OrderedList>
         <Flex>
           <ShoppingCart
