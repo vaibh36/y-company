@@ -27,6 +27,7 @@ const SearchModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const [category, setCategory] = React.useState("");
   const [cost, setCost] = React.useState("");
+  const [searchInput, setSearchInput] = React.useState("");
   const { products, setSearchProducts } = React.useContext(MyContext);
 
   const handleCategoryChange = (e) => {
@@ -50,6 +51,15 @@ const SearchModal = ({ isOpen, onClose }) => {
         return true;
       });
     }
+
+    if (searchInput) {
+      filtered = filtered?.filter((product) => {
+        if (product?.title?.includes(searchInput)) {
+          return product;
+        }
+      });
+    }
+
     onClose();
     setSearchProducts(filtered);
     navigate("/searched-products");
@@ -94,6 +104,9 @@ const SearchModal = ({ isOpen, onClose }) => {
                 type="text"
                 id="productName"
                 placeholder="Search by product name"
+                onChange={(event) => {
+                  setSearchInput(event?.target?.value);
+                }}
               />
             </div>
           </Stack>

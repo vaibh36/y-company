@@ -3,7 +3,7 @@ import React from "react";
 import { Text, Box, Flex, useDisclosure } from "@chakra-ui/react";
 import { ShoppingCart } from "phosphor-react";
 import { useShoppingCart } from "../../context/cart-provider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import SearchModal from "../Navbar/SearchModal";
 
 const MobileNavbar = () => {
@@ -114,8 +114,15 @@ const MobileNavbar = () => {
               </Flex>
             </Box>
           )}
-          <Flex flex={2}>
-            <Text color="white">Y Company</Text>
+          <Flex
+            flex={2}
+            sx={{
+              a: {
+                color: "white",
+              },
+            }}
+          >
+            <Link to="/">Y Company</Link>
           </Flex>
           <Flex flexDirection={"row"} gap={4} alignItems={"center"}>
             <Flex>
