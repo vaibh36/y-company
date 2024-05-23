@@ -58,7 +58,7 @@ const ProductCard = ({ product }) => {
             Add to Cart
           </Button>
           <Text fontWeight={700} fontSize={"24px"}>
-            ${product?.price}
+            INR {product?.price}
           </Text>
         </Flex>
       </Stack>
