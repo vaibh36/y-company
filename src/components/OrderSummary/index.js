@@ -24,9 +24,12 @@ const OrderSummary = () => {
 
     const {
       data: { id },
-    } = await axios.post("http://localhost:3001/api/checkout-sessions", {
-      items: items,
-    });
+    } = await axios.post(
+      "https://ycompany-be.vercel.app/api/checkout-sessions",
+      {
+        items: items,
+      }
+    );
     const stripe = await getStripe();
     await stripe.redirectToCheckout({
       sessionId: id,
