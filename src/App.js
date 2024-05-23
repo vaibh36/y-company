@@ -10,6 +10,7 @@ import Checkout from "./pages/Checkout";
 import { MyProductProvider } from "./context/product-provide";
 import FilteredProducts from "./pages/FilterProducts";
 import Category from "./pages/Category";
+import Success from "./pages/Checkout/success";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/searched-products" element={<FilteredProducts />} />
             <Route path="/category/:id" element={<Category />} />
+            <Route path="/checkout/success" element={<Success />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
