@@ -7,6 +7,7 @@ import {
   Grid,
   Divider,
   HStack,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import Navbar from "../../components/Navbar";
@@ -16,6 +17,8 @@ import { Plus, Minus } from "phosphor-react";
 import OrderSummary from "../../components/OrderSummary";
 
 const Checkout = () => {
+  const toast = useToast();
+  const toastIdRef = React.useRef();
   const isMobileView = useBreakpointValue({
     base: true,
     md: false,
@@ -23,6 +26,12 @@ const Checkout = () => {
   });
   const { cartCount, cartDetails, addItem, removeItem } = useShoppingCart();
   const cartItems = Object.values(cartDetails);
+
+  function close() {
+    if (toastIdRef.current) {
+      toast.close(toastIdRef.current);
+    }
+  }
 
   const handleOnAddToCart = (productData) => {
     addItem({
@@ -33,6 +42,14 @@ const Checkout = () => {
       price: productData?.price,
       stripeId: productData?.stripeId,
     });
+    toast({
+      title: "Item Added",
+      description: "Item added in the cart",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    close();
   };
 
   return (
@@ -96,6 +113,13 @@ const Checkout = () => {
                                 cursor={"pointer"}
                                 onClick={() => {
                                   removeItem(item);
+                                  toast({
+                                    title: "Item Removed",
+                                    description: "Item removed from the cart",
+                                    status: "success",
+                                    duration: 9000,
+                                    isClosable: true,
+                                  });
                                 }}
                                 pe={2}
                               />
@@ -143,6 +167,13 @@ const Checkout = () => {
                             cursor={"pointer"}
                             onClick={() => {
                               removeItem(item);
+                              toast({
+                                title: "Item Removed",
+                                description: "Item removed from the cart",
+                                status: "success",
+                                duration: 9000,
+                                isClosable: true,
+                              });
                             }}
                             pe={2}
                           />

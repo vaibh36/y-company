@@ -1,11 +1,20 @@
 import React from "react";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
-import { Box, Heading, Stack, Text, Flex, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Stack,
+  Text,
+  Flex,
+  Button,
+  useToast,
+} from "@chakra-ui/react";
 import { useShoppingCart } from "../../context/cart-provider";
 
 const ProductCard = ({ product }) => {
   const { addItem } = useShoppingCart();
+  const toast = useToast();
 
   const handleOnAddToCart = () => {
     addItem({
@@ -15,6 +24,13 @@ const ProductCard = ({ product }) => {
       description: product?.description,
       price: product?.price,
       stripeId: product?.stripeId,
+    });
+    toast({
+      title: "Item Added",
+      description: "Item added in the cart",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
     });
   };
 
