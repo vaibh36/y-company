@@ -12,12 +12,11 @@ import {
 import Navbar from "../Navbar";
 import MobileNavbar from "../MobileNavbar";
 import { useShoppingCart } from "../../context/cart-provider";
+import PropTypes from "prop-types";
 
 const ProductView = ({ productData }) => {
   const isMobileView = useBreakpointValue({ base: true, md: false, lg: false });
   const { addItem, cart } = useShoppingCart();
-  const [itemInfo, setItemInfo] = React.useState({});
-  console.log("cart info here is:-", cart, productData);
 
   const handleOnAddToCart = () => {
     addItem({
@@ -91,3 +90,13 @@ const ProductView = ({ productData }) => {
 };
 
 export default ProductView;
+
+ProductView.propTypes = {
+  productData: PropTypes.shape({
+    price: PropTypes.number,
+    image: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.string,
+    stripeId: PropTypes.string,
+  }),
+};

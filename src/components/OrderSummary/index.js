@@ -7,7 +7,7 @@ import getStripe from "../../getStripe";
 const OrderSummary = () => {
   const { cartDetails } = useShoppingCart();
   const cartItems = Object.values(cartDetails);
-  console.log("cartDetails are:-", cartDetails);
+
   const isMobileView = useBreakpointValue({
     base: true,
     md: false,

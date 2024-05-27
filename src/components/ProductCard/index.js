@@ -11,6 +11,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useShoppingCart } from "../../context/cart-provider";
+import PropTypes from "prop-types";
 
 const ProductCard = ({ product }) => {
   const { addItem } = useShoppingCart();
@@ -83,3 +84,13 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    price: PropTypes.number,
+    image: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.string,
+    stripeId: PropTypes.string,
+  }),
+};

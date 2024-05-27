@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { MyContext } from "../../context/product-provide";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const SearchModal = ({ isOpen, onClose }) => {
   const isMobileView = useBreakpointValue({
@@ -131,3 +132,8 @@ const SearchModal = ({ isOpen, onClose }) => {
 };
 
 export default SearchModal;
+
+SearchModal.propTypes = {
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+};
