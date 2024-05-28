@@ -16,6 +16,16 @@ import PropTypes from "prop-types";
 const ProductCard = ({ product }) => {
   const { addItem } = useShoppingCart();
   const toast = useToast();
+  const [isRed, setIsRed] = React.useState(true);
+  const offers = process.env.REACT_APP_OFFERS;
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setIsRed((prevIsRed) => !prevIsRed);
+    }, 1000); // Toggle color every second
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, []);
 
   const handleOnAddToCart = () => {
     addItem({
@@ -49,7 +59,24 @@ const ProductCard = ({ product }) => {
         backgroundColor: "white",
       }}
       flexDirection={"column"}
+      position={"relative"}
     >
+      {product?.discount && offers === "true" && (
+        <Box
+          position="absolute"
+          top="10px"
+          right="10px"
+          backgroundColor={isRed ? "red" : "green"}
+          color="white"
+          padding="5px 10px"
+          borderRadius="5px"
+          fontWeight="bold"
+          marginTop={"16px"}
+          transform={"rotate(20deg)"}
+        >
+          Discount
+        </Box>
+      )}
       <Link to={`/product/${product.id}`}>
         <Box className="product-card_img">
           <img src={product?.image} />

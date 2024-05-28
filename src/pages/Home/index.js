@@ -9,12 +9,19 @@ import {
 import React from "react";
 import Navbar from "../../components/Navbar";
 import { Box } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useBreakpointValue } from "@chakra-ui/react";
 import MobileNavbar from "../../components/MobileNavbar";
+import DiscountedProducts from "../../components/DiscountedProducts";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  console.log(
+    "variables here are:-",
+    process.env.REACT_APP_OFFERS,
+    typeof process.env.REACT_APP_OFFERS
+  );
 
   const isMobileView = useBreakpointValue({ base: true, md: false, lg: false });
   return (
@@ -22,7 +29,7 @@ const Home = () => {
       id="home__page"
       sx={{
         background: "#eee",
-        height: "100vh",
+        minHeight: "100vh",
       }}
     >
       <Container maxWidth={"6xl"} p={0}>
@@ -75,6 +82,25 @@ const Home = () => {
             </Flex>
           )}
         </Flex>
+        {process.env.REACT_APP_OFFERS === "true" && (
+          <Flex flexDirection={"column"} marginTop={8} padding={"16px"}>
+            <Flex
+              flexDirection={"row"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+              sx={{
+                a: {
+                  color: "blue",
+                  textDecoration: "underline",
+                },
+              }}
+            >
+              <Heading>Explore Items with great offers</Heading>
+              <Link to="/offers">View</Link>
+            </Flex>
+            <DiscountedProducts />
+          </Flex>
+        )}
       </Container>
     </Box>
   );

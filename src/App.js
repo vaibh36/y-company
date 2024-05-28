@@ -11,6 +11,7 @@ import { MyProductProvider } from "./context/product-provide";
 import FilteredProducts from "./pages/FilterProducts";
 import Category from "./pages/Category";
 import Success from "./pages/Checkout/success";
+import OffersPage from "./pages/OffersPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/searched-products" element={<FilteredProducts />} />
             <Route path="/category/:id" element={<Category />} />
             <Route path="/checkout/success" element={<Success />} />
+            <Route path="/offers" element={<OffersPage />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
