@@ -48,6 +48,7 @@ const ProductCard = ({ product }) => {
   return (
     <Stack
       id="card"
+      data-testid="product__card"
       sx={{
         width: { base: "full", md: "md" },
         paddingTop: "20px",
@@ -77,7 +78,7 @@ const ProductCard = ({ product }) => {
           Discount
         </Box>
       )}
-      <Link to={`/product/${product.id}`}>
+      <Link to={`/product/${product?.id}`}>
         <Box className="product-card_img">
           <img src={product?.image} />
         </Box>
