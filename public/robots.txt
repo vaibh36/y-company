@@ -1,3 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /completion
+Disallow: /checkout
+Sitemap: https://y-company.vercel.app/sitemap.xml

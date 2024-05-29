@@ -18,7 +18,6 @@ const ProductPage = () => {
   const isMobileView = useBreakpointValue({ base: true, md: false, lg: false });
 
   const { searchedProducts } = React.useContext(MyContext);
-  console.log("searchedProducts are:-", searchedProducts);
 
   if (searchedProducts?.length === 0) {
     return (
