@@ -17,12 +17,6 @@ import DiscountedProducts from "../../components/DiscountedProducts";
 const Home = () => {
   const navigate = useNavigate();
 
-  console.log(
-    "variables here are:-",
-    process.env.REACT_APP_OFFERS,
-    typeof process.env.REACT_APP_OFFERS
-  );
-
   const isMobileView = useBreakpointValue({ base: true, md: false, lg: false });
   return (
     <Box
