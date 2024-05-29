@@ -64,6 +64,7 @@ const ProductCard = ({ product }) => {
     >
       {product?.discount && offers === "true" && (
         <Box
+          data-testid="discount__tag"
           position="absolute"
           top="10px"
           right="10px"
@@ -90,10 +91,11 @@ const ProductCard = ({ product }) => {
         height={"100%"}
         justifyContent={"space-between"}
       >
-        <Heading>{product?.title}</Heading>
-        <Text>{product?.description}</Text>
+        <Heading data-testid="product__title">{product?.title}</Heading>
+        <Text data-testid="product__description">{product?.description}</Text>
         <Flex justifyContent={"space-between"} alignItems={"flex-end"}>
           <Button
+            data-testid="add__to__cart"
             colorScheme="blue"
             mr={3}
             onClick={() => {
@@ -102,7 +104,7 @@ const ProductCard = ({ product }) => {
           >
             Add to Cart
           </Button>
-          <Text fontWeight={700} fontSize={"24px"}>
+          <Text fontWeight={700} fontSize={"24px"} data-testid="product__price">
             INR {product?.price}
           </Text>
         </Flex>
