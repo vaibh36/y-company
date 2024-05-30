@@ -50,6 +50,7 @@ const OrderSummary = () => {
         gap={4}
         bgColor={"#E2E8F0"}
         p={4}
+        data-testid="order__summary"
       >
         <Text fontWeight={700} fontSize={"24px"} textAlign={"center"}>
           Order Summary
@@ -62,7 +63,7 @@ const OrderSummary = () => {
           <Text fontWeight={700} fontSize={"24px"}>
             Total Products (Inc GST)
           </Text>
-          <Text>INR {totalPrice}</Text>
+          <Text data-testid="order__summary__total">INR {totalPrice}</Text>
         </Stack>
         <Stack
           flexDirection={"row"}
@@ -80,6 +81,7 @@ const OrderSummary = () => {
             paddingRight={{ base: "2" }}
             onClick={checkoutFn}
             colorScheme="blue"
+            data-testid="order__summary__checkout"
           >
             Checkout
           </Button>

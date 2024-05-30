@@ -12,7 +12,8 @@ test("render test case", async () => {
     </MemoryRouter>
   );
 
-  await screen.findByTestId("product__card");
+  const productCard = await screen.findByTestId("product__card");
+  expect(productCard).toBeInTheDocument();
 });
 
 test("click add to cart test case", async () => {
