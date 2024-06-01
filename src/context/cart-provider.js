@@ -1,6 +1,7 @@
 import React, { useContext, useReducer, useMemo } from "react";
 import useLocalStorageReducer from "../hooks/use-local-storage-reducer";
 import { Map } from "immutable";
+import { useEffect } from "react";
 
 // Reducers
 const initialCartValues = {
@@ -8,6 +9,8 @@ const initialCartValues = {
   cartCount: 0,
   totalPrice: 0,
 };
+
+export let cartState = "";
 
 const addItem = (state = {}, product = null) => {
   let entry = state?.cartDetails?.[product?.id];
@@ -97,6 +100,10 @@ export const CartProvider = ({ currency = "USD", children = null }) => {
     ],
     [cart, currency]
   );
+
+  useEffect(() => {
+    cartState = cart;
+  }, [cart]);
 
   return (
     <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>

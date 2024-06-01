@@ -9,11 +9,6 @@ import {
 import ProductCard from "../ProductCard";
 
 const DiscountedProducts = () => {
-  const isMobileView = useBreakpointValue({
-    base: true,
-    md: false,
-    lg: false,
-  });
   const { products } = React.useContext(MyContext);
 
   return (

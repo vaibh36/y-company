@@ -1,14 +1,9 @@
 import React from "react";
-import { renderWithProviders } from "../../testUtils";
-import ProductCard from "./index";
+import { renderWithProviders } from "../../../testUtils";
+import ProductCard from "../index";
 import { fireEvent, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-
-jest.mock("../../context/cart-provider", () => ({
-  useShoppingCart: () => ({
-    addItem: jest.fn(),
-  }),
-}));
+import { cartState } from "../../../context/cart-provider";
 
 test("render test case", async () => {
   renderWithProviders(
@@ -17,7 +12,8 @@ test("render test case", async () => {
     </MemoryRouter>
   );
 
-  await screen.findByTestId("product__card");
+  const productCard = await screen.findByTestId("product__card");
+  expect(productCard).toBeInTheDocument();
 });
 
 test("click add to cart test case", async () => {
@@ -35,8 +31,23 @@ test("click add to cart test case", async () => {
     </MemoryRouter>
   );
 
+  expect(cartState).toMatchObject({
+    cartDetails: {},
+    cartCount: 0,
+    totalPrice: 0,
+  });
   const addBtn = await screen.findByTestId("add__to__cart");
   fireEvent.click(addBtn);
+  expect(cartState).toMatchObject({
+    cartDetails: {
+      [product.id]: {
+        ...product,
+        quantity: 1,
+      },
+    },
+    cartCount: 1,
+    totalPrice: 0,
+  });
 });
 
 test("product title availability", async () => {
