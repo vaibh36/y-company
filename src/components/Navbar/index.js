@@ -73,6 +73,7 @@ const Navbar = () => {
         </OrderedList>
         <Flex>
           <ShoppingCart
+            data-testid="cart__icon"
             size={22}
             cursor={"pointer"}
             onClick={() => {
@@ -91,6 +92,7 @@ const Navbar = () => {
       </Stack>
 
       <SearchIcon
+        data-testid="search__icon"
         color={"black"}
         cursor={"pointer"}
         boxSize={6}
