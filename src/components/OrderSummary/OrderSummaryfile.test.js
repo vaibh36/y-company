@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { renderWithProviders } from "../../../testUtils";
-import OrderSummary from "../index";
+import { renderWithProviders } from "../../testUtils";
+import OrderSummary from "./index";
 import { fireEvent, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { useShoppingCart } from "../../../context/cart-provider";
+import { useShoppingCart } from "../../context/cart-provider";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 
-jest.mock("../../../getStripe", () => {
+jest.mock("../../getStripe", () => {
   const redirectToCheckout = () => {
     expect(true).toBeTruthy();
     return true;
